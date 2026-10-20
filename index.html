@@ -1,22 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR" class="h-full">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Studio Tayssa Lopes | Agendamento & Serviços</title>
-    <meta name="description" content="Aplicativo de agendamento online e tabela de serviços do Studio Tayssa Lopes com bloqueio automático de horários e painel de gestão." />
-    <meta property="og:title" content="Studio Tayssa Lopes | Agendamento & Serviços" />
-    <meta property="og:description" content="Aplicativo de agendamento online e tabela de serviços do Studio Tayssa Lopes com bloqueio automático de horários e painel de gestão." />
+    <title id="pageTitle">Studio Tayssa Lopes | Agendamento & Serviços</title>
+
+    <!-- META TAGS DE COMPARTILHAMENTO (OPEN GRAPH / WHATSAPP) -->
     <meta property="og:type" content="website" />
+    <meta property="og:title" content="Studio Tayssa Lopes | Agendamento & Serviços" />
+    <meta property="og:description" content="Especialista em Cílios & Sobrancelhas. Agende seu horário e veja a tabela de valores online." />
+    <meta property="og:image" content="https://placehold.co/1200x630/6c429c/ffffff?text=Studio+Tayssa+Lopes" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  </head>
-  <body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased font-sans">
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased font-sans">
     <div id="root" class="min-h-full"></div>
     <script type="module" src="/src/main.tsx"></script>
-  </body>
+</body>
 </html>
-
