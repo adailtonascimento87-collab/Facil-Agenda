@@ -1,6 +1,0 @@
-{
-  "name": "Studio Tayssa Lopes",
-  "description": "Aplicativo de agendamento online e tabela de serviços do Studio Tayssa Lopes com bloqueio automático de horários e painel de gestão.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
