@@ -1,18 +1,20 @@
-# 📅 FácilAgenda — Sistema Universal de Agendamento & Serviços
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
-O **FácilAgenda** é uma solução web moderna, responsiva e universal para gestão de agendamentos, exibição de tabelas de preços/serviços e integração direta de pedidos via **WhatsApp**.
+# Run and deploy your AI Studio app
 
-## 🚀 Diferenciais & Recursos
-* **Multi-nicho:** Estrutura flexível pronta para ser personalizada para estética, barbearias, consultórios, aulas e prestadores de serviços em geral.
-* **Agendamento Inteligente:** Seleção de data e horário com envio direto do resumo formatado para o WhatsApp da profissional/empresa.
-* **Painel Administrativo (ADM):** Gestão interna integrada para personalização de serviços, regras de atendimento, horários e cores do tema.
-* **Suporte a Temas:** Alternância nativa entre Modo Claro (Light) e Modo Escuro (Dark).
+This contains everything you need to run your app locally.
 
-## 🛠️ Tecnologias Utilizadas
-* **HTML5 & JavaScript Vanilla**
-* **Tailwind CSS** (via CDN) para estilização responsiva
-* **Font Awesome** para iconografia
-* **Google Fonts** (*Plus Jakarta Sans*)
+View your app in AI Studio: https://ai.studio/apps/b55b0615-e357-4f81-9d4e-7aca1631e6d2
 
----
-*Desenvolvido e mantido para implantação rápida em plataformas de hospedagem como Netlify.*
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
