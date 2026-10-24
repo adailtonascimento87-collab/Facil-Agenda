@@ -1006,6 +1006,8 @@
             elements.phoneDisplay.textContent = appState.formattedPhone;
             elements.whatsappBtnHeader.href = `https://wa.me/${appState.whatsappNumber}`;
             elements.pixKeyText.textContent = appState.pixKey;
+            elements.ctaTitle.textContent = appState.ctaTitle;
+            elements.ctaSubtitle.textContent = appState.ctaSubtitle;
 
             elements.depositRuleTexts.forEach(el => el.textContent = appState.depositAmount);
 
