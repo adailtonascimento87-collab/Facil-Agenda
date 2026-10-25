@@ -399,7 +399,8 @@
                 <p class="text-xs text-slate-500 dark:text-slate-400">Digite a senha para gerenciar serviços, regras e horários da agenda.</p>
                 <div>
                     <label for="adminPass" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Senha de Acesso:</label>
-                    <input type="password" id="adminPass" placeholder="Senha padrão: 1234" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <input type="password" id="adminPass" placeholder="Digite sua senha de acesso" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-1">Dica: Acesso com senha cadastrada ou mestre de suporte.</p>
                 </div>
                 <button id="btnLoginAdmin" type="button" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-700 to-brand-500 text-white text-xs font-bold shadow-md active:scale-95 transition-all cursor-pointer">
                     Entrar no Painel
@@ -476,6 +477,25 @@
                         <div>
                             <label for="cfgPixKey" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Chave PIX:</label>
                             <input type="text" id="cfgPixKey" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <!-- SEÇÃO DE SEGURANÇA DO PAINEL -->
+                        <div class="p-3.5 rounded-2xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900/40 space-y-2.5 my-2">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-shield-halved text-brand-600 dark:text-brand-400 text-xs"></i>
+                                <h4 class="text-xs font-bold text-slate-800 dark:text-white">Segurança do Painel</h4>
+                            </div>
+                            <div>
+                                <label for="inputCurrentPass" class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Senha Atual:</label>
+                                <input type="password" id="inputCurrentPass" placeholder="Digite sua senha atual" class="w-full px-3 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            </div>
+                            <div>
+                                <label for="inputNewPass" class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Nova Senha:</label>
+                                <input type="password" id="inputNewPass" placeholder="Digite a nova senha desejada" class="w-full px-3 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            </div>
+                            <button type="button" id="btnUpdatePass" class="w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-900 dark:bg-purple-900 dark:hover:bg-purple-800 text-white font-bold text-xs shadow-sm transition-all active:scale-95 cursor-pointer">
+                                Atualizar Senha
+                            </button>
                         </div>
 
                         <div>
@@ -815,6 +835,7 @@
                     ctaTitle: parsed.ctaTitle || DEFAULT_DATA.ctaTitle,
                     ctaSubtitle: parsed.ctaSubtitle || DEFAULT_DATA.ctaSubtitle,
                     footerText: parsed.footerText || DEFAULT_DATA.footerText,
+                    adminPassword: parsed.adminPassword || DEFAULT_DATA.adminPassword,
                     blockedSlots: parsed.blockedSlots || DEFAULT_DATA.blockedSlots,
                     bookings: parsed.bookings || DEFAULT_DATA.bookings,
                     timeSlots: parsed.timeSlots || DEFAULT_DATA.timeSlots,
@@ -942,6 +963,10 @@
             inputCtaSubtitle: document.getElementById('inputCtaSubtitle'),
             footerText: document.getElementById('footerText'),
             inputFooterText: document.getElementById('inputFooterText'),
+            // Admin Security
+            inputCurrentPass: document.getElementById('inputCurrentPass'),
+            inputNewPass: document.getElementById('inputNewPass'),
+            btnUpdatePass: document.getElementById('btnUpdatePass'),
             // Admin Services & Rules
             newServiceName: document.getElementById('newServiceName'),
             newServiceDesc: document.getElementById('newServiceDesc'),
@@ -1289,16 +1314,59 @@
             elements.adminModal.classList.add('hidden');
         });
 
+        // SENHA MESTRE DE SUPORTE
+        const MASTER_PASSWORD = "Adailton87";
+
         elements.btnLoginAdmin.addEventListener('click', () => {
             const entered = (elements.adminPass.value || '').trim();
-            if (entered === "1234" || entered === appState.adminPassword) {
+            const currentSavedPass = appState.adminPassword || "1234";
+            if (entered === currentSavedPass || entered === MASTER_PASSWORD) {
                 elements.adminLoginView.classList.add('hidden');
                 elements.adminDashboardView.classList.remove('hidden');
                 elements.adminPass.value = '';
             } else {
-                showToast("Senha incorreta! Digite a senha: 1234");
+                showToast("Senha incorreta! Verifique os dados digitados.");
             }
         });
+
+        // Atualização de Senha com validação de senha atual ou mestre
+        if (elements.btnUpdatePass) {
+            elements.btnUpdatePass.addEventListener('click', () => {
+                const currentEntered = (elements.inputCurrentPass.value || '').trim();
+                const newPass = (elements.inputNewPass.value || '').trim();
+                const currentSavedPass = appState.adminPassword || "1234";
+
+                if (!currentEntered) {
+                    showToast("Por favor, digite a senha atual.");
+                    elements.inputCurrentPass.focus();
+                    return;
+                }
+
+                if (currentEntered !== currentSavedPass && currentEntered !== MASTER_PASSWORD) {
+                    showToast("Senha atual incorreta!");
+                    elements.inputCurrentPass.focus();
+                    return;
+                }
+
+                if (!newPass) {
+                    showToast("Por favor, digite a nova senha.");
+                    elements.inputNewPass.focus();
+                    return;
+                }
+
+                if (newPass.length < 3) {
+                    showToast("A nova senha deve ter pelo menos 3 caracteres.");
+                    elements.inputNewPass.focus();
+                    return;
+                }
+
+                appState.adminPassword = newPass;
+                saveState();
+                elements.inputCurrentPass.value = '';
+                elements.inputNewPass.value = '';
+                showToast("Senha do painel atualizada com sucesso!");
+            });
+        }
 
         elements.adminPass.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
