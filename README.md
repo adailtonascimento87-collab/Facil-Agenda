@@ -1,6 +1,6 @@
 # façil agenda
 
-Plataforma e sistema de agendamento universal ( 01 RAIZ ) 
+Plataforma e sistema de agendamento universal ( MATRIZ ) 
 
 ### 🌟 Funcionalidades:
 - Sistema de agendamento online integrado com WhatsApp.
