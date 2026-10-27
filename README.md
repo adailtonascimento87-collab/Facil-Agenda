@@ -1,6 +1,6 @@
 # façil agenda
 
-Plataforma profissional de agendamento e gestão para o Studio (Especialista em Cílios & Sobrancelhas). 
+Plataforma e sistema de agendamento universal ( 01 RAIZ ) 
 
 ### 🌟 Funcionalidades:
 - Sistema de agendamento online integrado com WhatsApp.
